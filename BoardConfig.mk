@@ -77,7 +77,15 @@ BOARD_NO_RGBX_8888 := true
 BOARD_USE_HTC_USB_FUNCTION_SWITCH := true
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 
-
+# cat /proc/mtd
+# dev:    size   erasesize  name
+# mtd0: 000a0000 00020000 "misc"
+# mtd1: 00480000 00020000 "recovery"
+# mtd2: 00300000 00020000 "boot"
+# mtd3: 0f800000 00020000 "system"
+# mtd4: 000a0000 00020000 "local"
+# mtd5: 02800000 00020000 "cache"
+# mtd6: 09500000 00020000 "datadata"
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00300000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00480000
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x0f800000   # limited so we enforce room to grow
