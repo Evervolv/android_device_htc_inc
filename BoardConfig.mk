@@ -70,6 +70,8 @@ BOARD_USES_QCOM_LIBS := true
 
 BOARD_USE_FROYO_LIBCAMERA := true
 
+BOARD_USE_NEW_LIBRIL_HTC := true
+
 # Use RGB565 surfaces until userspace drivers are upgraded
 BOARD_NO_RGBX_8888 := true
 
