@@ -19,8 +19,6 @@
 # not specialized for any geography.
 #
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us.mk)
 
@@ -81,7 +79,7 @@ PRODUCT_COPY_FILES += \
     device/htc/inc/apns-conf.xml:system/etc/apns-conf.xml
 
 PRODUCT_COPY_FILES += \
-    device/htc/inc/bcm4329.ko:system/lib/modules/bcm4329.ko
+    device/htc/inc/modules/bcm4329.ko:system/lib/modules/bcm4329.ko
 
 PRODUCT_PACKAGES += \
     librs_jni \
@@ -89,7 +87,9 @@ PRODUCT_PACKAGES += \
     lights.inc \
     gralloc.qsd8k \
     copybit.qsd8k \
-    gps.inc
+    gps.inc \
+    libOmxCore \
+    libOmxVidEnc
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -114,8 +114,8 @@ $(call inherit-product, device/htc/inc/media_a1026.mk)
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
 
-$(call inherit-product, build/target/product/full.mk)
+$(call inherit-product, build/target/product/full_base.mk)
 
 
-PRODUCT_NAME := generic_inc
+PRODUCT_NAME := full_inc
 PRODUCT_DEVICE := inc

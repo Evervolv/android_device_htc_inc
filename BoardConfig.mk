@@ -57,12 +57,18 @@ BOARD_KERNEL_BASE := 0x20000000
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
-# For the FM Radio
+# Use RGB565 surfaces until userspace drivers are upgraded
+BOARD_NO_RGBX_8888 := true
+
 BOARD_HAVE_FM_RADIO := true
+BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 
 BOARD_VENDOR_QCOM_AMSS_VERSION := 3200
 
 BOARD_VENDOR_USE_AKMD := akm8973
+
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := inc
+BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 
 BOARD_EGL_CFG := device/htc/inc/egl.cfg
 
@@ -72,12 +78,9 @@ BOARD_USE_FROYO_LIBCAMERA := true
 
 BOARD_USE_NEW_LIBRIL_HTC := true
 
-# Use RGB565 surfaces until userspace drivers are upgraded
-BOARD_NO_RGBX_8888 := true
-
 # For HTC's USB implementation
-BOARD_USE_HTC_USB_FUNCTION_SWITCH := true
-BOARD_USE_USB_MASS_STORAGE_SWITCH := true
+#BOARD_USE_HTC_USB_FUNCTION_SWITCH := true
+#BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 
 # cat /proc/mtd
 # dev:    size   erasesize  name
@@ -94,17 +97,9 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x0f800000   # limited so we enforce room to
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x09500000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-#TARGET_RECOVERY_UI_LIB := librecovery_ui_inc librecovery_ui_htc
-
-
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 TARGET_PREBUILT_KERNEL := device/htc/inc/kernel
 TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/inc/recovery_kernel
-
-# to enable the GPS HAL
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := inc
-# AMSS version to use for GPS
-BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 
 BOARD_HAS_DATADATA := true
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1

@@ -28,7 +28,6 @@ settings.display.brightness=143
 
 # For emmc phone storage
 ro.phone_storage = 1
-ro.additionalmounts=/mnt/emmc
 
 # This is a high density device with more memory, so larger vm heaps for it.
 dalvik.vm.heapsize=32m
@@ -55,5 +54,6 @@ ro.HorizontalBUA = true
 #Recognize different PRL and PCB ID to load different acoustic ACDB for Incredible_C
 ro.ril.enable.prl.recognition = 1
 
-ro.opengles.version=131072
+ro.additionalmounts=/mnt/emmc
 
+ro.opengles.version=131072
