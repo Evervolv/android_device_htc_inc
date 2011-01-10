@@ -77,21 +77,21 @@
 -->
 <MediaSettings>
     <!-- Each camcorder profile defines a set of predefined configuration parameters -->
-    <CamcorderProfiles cameraId="0">
-
+    <CamcorderProfiles>
+	<!-- Added but disabled for now until stagefright is fixed
         <EncoderProfile quality="hd" fileFormat="mp4" duration="60">
             <Video codec="m4v"
                    bitRate="6000000"
                    width="1280"
                    height="720"
-                   frameRate="24" />
+                   frameRate="30" />
 
             <Audio codec="aac"
-                    bitRate="96000"
-                    sampleRate="16000"
-                    channels="1" />
+                   bitRate="96000"
+                   sampleRate="16000"
+                   channels="1" />
         </EncoderProfile>
-
+	-->
         <EncoderProfile quality="high" fileFormat="mp4" duration="60">
             <Video codec="h264"
                    bitRate="3000000"
@@ -106,7 +106,7 @@
         </EncoderProfile>
 
         <EncoderProfile quality="low" fileFormat="3gp" duration="30">
-            <Video codec="m4v"
+            <Video codec="h263"
                    bitRate="256000"
                    width="176"
                    height="144"
@@ -122,44 +122,12 @@
         <ImageEncoding quality="90" />
         <ImageEncoding quality="80" />
         <ImageEncoding quality="70" />
-    </CamcorderProfiles>
-
-    <CamcorderProfiles cameraId="1">
-        <EncoderProfile quality="high" fileFormat="mp4" duration="60">
-            <Video codec="h264"
-                   bitRate="2000000"
-                   width="640"
-                   height="480"
-                   frameRate="24" />
-
-            <Audio codec="aac"
-                   bitRate="96000"
-                   sampleRate="16000"
-                   channels="1" />
-
-        </EncoderProfile>
-
-        <EncoderProfile quality="low" fileFormat="3gp" duration="30">
-            <Video codec="m4v"
-                   bitRate="256000"
-                   width="176"
-                   height="144"
-                   frameRate="15" />
-
-            <Audio codec="amrnb"
-                   bitRate="12200"
-                   sampleRate="8000"
-                   channels="1" />
-        </EncoderProfile>
-
-        <ImageEncoding quality="90" />
-        <ImageEncoding quality="80" />
-        <ImageEncoding quality="70" />
-
-        <ImageDecoding memCap="10000000" />
+        <ImageDecoding memCap="20000000" />
 
         <Camera previewFrameRate="0" />
+
     </CamcorderProfiles>
+
 
     <EncoderOutputFileFormat name="3gp" />
     <EncoderOutputFileFormat name="mp4" />
@@ -192,11 +160,6 @@
         minSampleRate="8000" maxSampleRate="16000"
         minChannels="1" maxChannels="1" />
 
-    <AudioEncoderCap name="amrwb" enabled="true"
-        minBitRate="6600" maxBitRate="23050"
-        minSampleRate="16000" maxSampleRate="16000"
-        minChannels="1" maxChannels="1" />
-
     <AudioEncoderCap name="amrnb" enabled="true"
         minBitRate="5525" maxBitRate="12200"
         minSampleRate="8000" maxSampleRate="8000"
@@ -209,6 +172,6 @@
         for TEST applications. For other applications, we do
         not perform any checks at all.
     -->
-    <VideoDecoderCap name="wmv" enabled="false"/>
-    <AudioDecoderCap name="wma" enabled="false"/>
+    <VideoDecoderCap name="wmv" enabled="true"/>
+    <AudioDecoderCap name="wma" enabled="true"/>
 </MediaSettings>
