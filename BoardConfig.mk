@@ -78,10 +78,6 @@ BOARD_USE_FROYO_LIBCAMERA := true
 
 BOARD_USE_NEW_LIBRIL_HTC := true
 
-# For HTC's USB implementation
-#BOARD_USE_HTC_USB_FUNCTION_SWITCH := true
-#BOARD_USE_USB_MASS_STORAGE_SWITCH := true
-
 # cat /proc/mtd
 # dev:    size   erasesize  name
 # mtd0: 000a0000 00020000 "misc"
