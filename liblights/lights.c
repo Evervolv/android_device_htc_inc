@@ -34,57 +34,32 @@
 
 /******************************************************************************/
 
-static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
-static struct light_state_t g_notification;
-static struct light_state_t g_battery;
-static int g_backlight = 255;
-static int g_buttons = 0;
-static int g_attention = 0;
-static int g_wimax = 0;
-static int g_caps = 0;
-static int g_func = 0;
+static struct light_state_t g_notification = {0,0,0,0,0};
+static struct light_state_t g_battery = {0,0,0,0,0};
 
-char const*const GREEN_LED_FILE
+static char const*const GREEN_LED_FILE
         = "/sys/class/leds/green/brightness";
 
-char const*const AMBER_LED_FILE
+static char const*const AMBER_LED_FILE
         = "/sys/class/leds/amber/brightness";
 
-char const*const LCD_FILE
+static char const*const LCD_FILE
         = "/sys/class/leds/lcd-backlight/brightness";
 
-char const*const AMBER_BLINK_FILE
+static char const*const AMBER_BLINK_FILE
         = "/sys/class/leds/amber/blink";
-        
-char const*const GREEN_BLINK_FILE
+
+static char const*const GREEN_BLINK_FILE
         = "/sys/class/leds/green/blink";
 
-char const*const KEYBOARD_FILE
-        = "/sys/class/leds/keyboard-backlight/brightness";
-
-char const*const BUTTON_FILE
+static char const*const BUTTON_FILE
         = "/sys/class/leds/button-backlight/brightness";
-
-char const*const CAPS_FILE
-        = "/sys/class/leds/caps/brightness";
-
-char const*const FUNC_FILE
-        = "/sys/class/leds/func/brightness";
-
-char const*const WIMAX_FILE
-        = "/sys/class/leds/wimax/brightness";
 
 
 /**
  * device methods
  */
-
-void init_globals(void)
-{
-    // init the mutex
-    pthread_mutex_init(&g_lock, NULL);
-}
 
 static int
 write_int(char const* path, int value)
@@ -115,13 +90,6 @@ is_lit(struct light_state_t const* state)
 }
 
 static int
-handle_trackball_light_locked(struct light_device_t* dev)
-{
-    //no trackball light for inc
-    return 0;
-}
-
-static int
 rgb_to_brightness(struct light_state_t const* state)
 {
     int color = state->color & 0x00ffffff;
@@ -136,20 +104,7 @@ set_light_backlight(struct light_device_t* dev,
     int err = 0;
     int brightness = rgb_to_brightness(state);
     pthread_mutex_lock(&g_lock);
-    g_backlight = brightness;
     err = write_int(LCD_FILE, brightness);
-    pthread_mutex_unlock(&g_lock);
-    return err;
-}
-
-static int
-set_light_keyboard(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-    int err = 0;
-    int on = is_lit(state);
-    pthread_mutex_lock(&g_lock);
-    err = write_int(KEYBOARD_FILE, on?255:0);
     pthread_mutex_unlock(&g_lock);
     return err;
 }
@@ -161,47 +116,7 @@ set_light_buttons(struct light_device_t* dev,
     int err = 0;
     int on = is_lit(state);
     pthread_mutex_lock(&g_lock);
-    g_buttons = on;
     err = write_int(BUTTON_FILE, on?255:0);
-    pthread_mutex_unlock(&g_lock);
-    return err;
-}
-
-static int
-set_light_wimax(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-    int err = 0;
-    int brightness = rgb_to_brightness(state);
-    pthread_mutex_lock(&g_lock);
-    g_wimax = brightness;
-    err = write_int(WIMAX_FILE, brightness);
-    pthread_mutex_unlock(&g_lock);
-    return err;
-}
-
-static int
-set_light_caps(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-    int err = 0;
-    int on = is_lit(state);
-    pthread_mutex_lock(&g_lock);
-    g_caps = on;
-    err = write_int(CAPS_FILE, on?255:0);
-    pthread_mutex_unlock(&g_lock);
-    return err;
-}
-
-static int
-set_light_func(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-    int err = 0;
-    int on = is_lit(state);
-    pthread_mutex_lock(&g_lock);
-    g_func = on;
-    err = write_int(FUNC_FILE, on?255:0);
     pthread_mutex_unlock(&g_lock);
     return err;
 }
@@ -281,6 +196,7 @@ handle_speaker_battery_locked(struct light_device_t* dev)
         set_speaker_light_locked(dev, &g_notification);
     }
 }
+
 static int
 set_light_battery(struct light_device_t* dev,
         struct light_state_t const* state)
@@ -303,14 +219,6 @@ set_light_notifications(struct light_device_t* dev,
     return 0;
 }
 
-static int
-set_light_attention(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-	//no attention light for incredible
-	return 0;
-}
-
 
 /** Close the lights device */
 static int
@@ -319,7 +227,6 @@ close_lights(struct light_device_t *dev)
     if (dev) {
         free(dev);
     }
-    
     return 0;
 }
 
@@ -340,9 +247,6 @@ static int open_lights(const struct hw_module_t* module, char const* name,
     if (0 == strcmp(LIGHT_ID_BACKLIGHT, name)) {
         set_light = set_light_backlight;
     }
-    else if (0 == strcmp(LIGHT_ID_KEYBOARD, name)) {
-        set_light = set_light_keyboard;
-    }
     else if (0 == strcmp(LIGHT_ID_BUTTONS, name)) {
         set_light = set_light_buttons;
     }
@@ -352,26 +256,11 @@ static int open_lights(const struct hw_module_t* module, char const* name,
     else if (0 == strcmp(LIGHT_ID_NOTIFICATIONS, name)) {
         set_light = set_light_notifications;
     }
-    else if (0 == strcmp(LIGHT_ID_ATTENTION, name)) {
-        set_light = set_light_attention;
-    }
-    else if (0 == strcmp(LIGHT_ID_CAPS, name)) {
-        set_light = set_light_caps;
-    }
-    else if (0 == strcmp(LIGHT_ID_FUNC, name)) {
-        set_light = set_light_func;
-    }
-    else if (0 == strcmp(LIGHT_ID_WIMAX, name)) {
-        set_light = set_light_wimax;
-    }
     else {
         return -EINVAL;
     }
 
-    pthread_once(&g_init, init_globals);
-
-    struct light_device_t *dev = malloc(sizeof(struct light_device_t));
-    memset(dev, 0, sizeof(*dev));
+    struct light_device_t *dev = calloc(1, sizeof(struct light_device_t));
 
     dev->common.tag = HARDWARE_DEVICE_TAG;
     dev->common.version = 0;
