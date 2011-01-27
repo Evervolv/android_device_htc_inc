@@ -118,6 +118,10 @@ on boot
     chown media system /sys/android_camera/cam_mode
     chown radio radio /sys/module/msm_flashlight/parameters/phone_status
 
+    # flashlight
+    chown system camera /sys/devices/platform/flashlight.0/leds/flashlight/brightness
+    chmod 0660          /sys/devices/platform/flashlight.0/leds/flashlight/brightness
+
     # Power Management
     write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate 40000
 
