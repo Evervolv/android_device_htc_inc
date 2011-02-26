@@ -18,14 +18,13 @@
 unknown
 -->
 
-<mms_config version="2">
+<mms_config version="4">
 	<bool name="enabledMMS">true</bool>
 	<bool name="enabledTransID">true</bool>
 	<bool name="enabledNotifyWapMMSC">true</bool>
 	<int name="maxMessageSize">1258291</int>
-	<string name="userAgent">motoa855</string>
-	<string name="uaProfTagName">Profile</string>
-	<string name="uaProfUrl">http://uaprof.vtext.com/mot/a855/a855.xml</string>
+	<string name="userAgent">pcdadr63k</string>
+	<string name="uaProfUrl">http://uaprof.vtext.com/pcd/adr63k/adr63k.xml</string>
 	<int name="recipientLimit">10</int>
 	<string name="httpParams">x-up-calling-line-id: 1##LINE1##|X-VzW-MDN: 1##LINE1##</string>
 	<string name="httpParamsLine1Key">##LINE1##</string>
