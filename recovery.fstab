@@ -6,9 +6,9 @@
 /system		yaffs2		system
 /datadata	yaffs2		datadata
 
-/data		ext3		/dev/block/mmcblk0p1
-/cache		ext3		/dev/block/mmcblk0p2
+/data		ext4		/dev/block/mmcblk0p1	NULL			ext3
+/cache		ext4		/dev/block/mmcblk0p2	NULL			ext3
 /emmc		vfat		/dev/block/mmcblk0p3
 
 /sdcard		vfat		/dev/block/mmcblk1p1	/dev/block/mmcblk1
-/sd-ext		ext4		/dev/block/mmcblk1p2
+/sd-ext		ext4		/dev/block/mmcblk1p2	NULL			ext3

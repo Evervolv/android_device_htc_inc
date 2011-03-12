@@ -36,7 +36,7 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
-
+ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_BOOTLOADER_BOARD_NAME := inc
 
 # Wifi related defines
@@ -53,12 +53,10 @@ BOARD_USES_GENERIC_AUDIO := false
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1
 BOARD_KERNEL_BASE := 0x20000000
+BOARD_KERNEL_NEW_PPPOX := true
 
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-
-# Use RGB565 surfaces until userspace drivers are upgraded
-BOARD_NO_RGBX_8888 := true
 
 BOARD_HAVE_FM_RADIO := true
 BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
@@ -73,7 +71,6 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 BOARD_EGL_CFG := device/htc/inc/egl.cfg
 
 BOARD_USES_QCOM_LIBS := true
-BOARD_USES_QCOM_GPS := true
 
 BOARD_USE_FROYO_LIBCAMERA := true
 
@@ -105,3 +102,5 @@ BOARD_DATA_FILESYSTEM := auto
 BOARD_CACHE_DEVICE := /dev/block/mmcblk0p2
 BOARD_CACHE_FILESYSTEM := auto
 
+# Make sure vold formats the proper sdcard partition
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
