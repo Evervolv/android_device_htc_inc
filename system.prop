@@ -7,6 +7,7 @@ ro.ril.def.preferred.network = 4
 ro.telephony.default_network = 4
 wifi.interface = eth0
 wifi.supplicant_scan_interval=45
+mobiledata.interfaces=rmnet0
 ro.com.android.dataroaming = true
 ro.com.google.locationfeatures = 1
 # density in DPI of the LCD of this board. This is used to scale the UI
