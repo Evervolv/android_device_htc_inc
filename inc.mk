@@ -60,11 +60,15 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
-    frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml 
+    frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
+    frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
 
 # media config xml file
 PRODUCT_COPY_FILES += \
     device/htc/inc/media_profiles.xml:system/etc/media_profiles.xml
+
+# Get the long list of APNs
+PRODUCT_COPY_FILES += device/sample/etc/apns-conf_verizon.xml:system/etc/apns-conf.xml
 
 # Firmware
 PRODUCT_COPY_FILES += \
@@ -88,7 +92,11 @@ PRODUCT_PACKAGES += \
     copybit.qsd8k \
     gps.inc \
     libOmxCore \
-    libOmxVidEnc
+    libOmxVidEnc \
+    com.android.future.usb.accessory \
+    audio.a2dp.default \
+    audio.primary.qsd8k \
+    audio_policy.qsd8k
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
