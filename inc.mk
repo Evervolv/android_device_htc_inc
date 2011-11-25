@@ -23,7 +23,8 @@
 $(call inherit-product, device/common/gps/gps_us.mk)
 
 PRODUCT_COPY_FILES += \
-    device/htc/inc/init.inc.rc:root/init.inc.rc
+    device/htc/inc/init.inc.rc:root/init.inc.rc \
+    device/htc/supersonic/ueventd.supersonic.rc:root/ueventd.inc.rc
 
 $(call inherit-product-if-exists, vendor/htc/inc/inc-vendor.mk)
 
@@ -130,7 +131,7 @@ $(call inherit-product-if-exists, vendor/htc/inc/inc-vendor.mk)
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
 
-$(call inherit-product, build/target/product/full_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 
 PRODUCT_NAME := full_inc

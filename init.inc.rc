@@ -112,7 +112,8 @@ on boot
     chown system system /sys/class/leds/amber/brightness
     chown system system /sys/class/leds/amber/blink
     chown system system /sys/module/serial/parameters/modem_enabled
-    chown system system /dev/ttyHSUSB0
+    chown bluetooth bluetooth /dev/ttyHS0
+    chmod 0770 /dev/ttyHS0
     chown system system /dev/ttySA0
     chown system system /dev/smd9
     chown media system /sys/android_camera/cam_mode
@@ -145,11 +146,13 @@ service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
 #   after setting up the capabilities required for WEXT
 #   user wifi
 #   group wifi inet keystore
+    class main
     socket wpa_eth0 dgram 660 wifi wifi
     disabled
     oneshot
 
 service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
+    class main
     disabled
     oneshot
 
@@ -161,6 +164,7 @@ service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
 
 # compass/accelerometer daemon
 service akmd /system/bin/akmd
+    class main
     user compass
     group compass misc input
 
