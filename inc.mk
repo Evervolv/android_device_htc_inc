@@ -63,6 +63,10 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
 
+# Touchscreen
+PRODUCT_COPY_FILES += \
+    device/htc/inc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc
+
 # media config xml file
 PRODUCT_COPY_FILES += \
     device/htc/inc/media_profiles.xml:system/etc/media_profiles.xml
