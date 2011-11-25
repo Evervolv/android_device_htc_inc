@@ -86,7 +86,15 @@ PRODUCT_COPY_FILES += \
     device/htc/inc/apns-conf.xml:system/etc/apns-conf.xml
 
 PRODUCT_COPY_FILES += \
-    device/htc/inc/modules/bcm4329.ko:system/lib/modules/bcm4329.ko
+    device/htc/inc/modules/bcm4329.ko:system/lib/modules/auth_rpcgss.ko \
+    device/htc/inc/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
+    device/htc/inc/modules/bcm4329.ko:system/lib/modules/cifs.ko \
+    device/htc/inc/modules/bcm4329.ko:system/lib/modules/ifb.ko \
+    device/htc/inc/modules/bcm4329.ko:system/lib/modules/lockd.ko \
+    device/htc/inc/modules/bcm4329.ko:system/lib/modules/nfs.ko \
+    device/htc/inc/modules/bcm4329.ko:system/lib/modules/rpcsec_gss_krb5.ko \
+    device/htc/inc/modules/bcm4329.ko:system/lib/modules/sunrpc.ko \
+    device/htc/inc/modules/bcm4329.ko:system/lib/modules/tun.ko
 
 PRODUCT_PACKAGES += \
     librs_jni \
