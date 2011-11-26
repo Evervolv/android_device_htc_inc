@@ -68,9 +68,7 @@ BOARD_VENDOR_USE_AKMD := akm8973
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := inc
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 
-#Add ICS GPU Rendering to config
-USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := device/htc/inc/egl.cfg
+#BOARD_EGL_CFG := device/htc/inc/egl.cfg
 
 BOARD_USES_QCOM_LIBS := true
 
