@@ -101,15 +101,15 @@ PRODUCT_PACKAGES += \
     librs_jni \
     sensors.inc \
     lights.inc \
-    gralloc.qsd8k \
-    copybit.qsd8k \
     gps.inc \
     libOmxCore \
     libOmxVidEnc \
-    com.android.future.usb.accessory \
     audio.a2dp.default \
     audio.primary.qsd8k \
-    audio_policy.qsd8k
+    audio_policy.qsd8k \
+    com.android.future.usb.accessory
+#    gralloc.qsd8k \
+#    copybit.qsd8k \
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
