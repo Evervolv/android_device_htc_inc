@@ -107,8 +107,8 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.primary.qsd8k \
     audio_policy.qsd8k \
+    gralloc.qsd8k \
     com.android.future.usb.accessory
-#    gralloc.qsd8k \
 #    copybit.qsd8k \
 
 # we have enough storage space to hold precise GC data
