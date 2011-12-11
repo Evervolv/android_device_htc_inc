@@ -111,6 +111,10 @@ PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 #    copybit.qsd8k \
 
+#Disable HWAccel for now
+ADDITIONAL_BUILD_PROPERTIES += \
+    ro.config.disable_hw_accel=true
+
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
