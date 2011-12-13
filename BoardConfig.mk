@@ -69,7 +69,7 @@ BOARD_VENDOR_USE_AKMD := akm8973
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := inc
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 
-BOARD_EGL_CFG := device/htc/inc/egl.cfg
+BOARD_EGL_CFG := device/htc/inc/prebuilt/lib/egl/egl.cfg
 BOARD_USES_OVERLAY := true
 #USE_OPENGL_RENDERER := true
 #BOARD_USES_HGL := true
@@ -97,7 +97,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x09500000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
-TARGET_PREBUILT_KERNEL := device/htc/inc/kernel
+TARGET_PREBUILT_KERNEL := device/htc/inc/prebuilt/root/kernel
 TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/inc/recovery_kernel
 
 BOARD_HAS_DATADATA := true

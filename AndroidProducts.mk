@@ -18,4 +18,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/inc.mk
+    $(LOCAL_DIR)/full_inc.mk

@@ -23,8 +23,8 @@
 $(call inherit-product, device/common/gps/gps_us.mk)
 
 PRODUCT_COPY_FILES += \
-    device/htc/inc/init.inc.rc:root/init.inc.rc \
-    device/htc/supersonic/ueventd.supersonic.rc:root/ueventd.inc.rc
+    device/htc/inc/prebuilt/root/init.inc.rc:root/init.inc.rc \
+    device/htc/inc/prebuilt/root/ueventd.inc.rc:root/ueventd.inc.rc
 
 $(call inherit-product-if-exists, vendor/htc/inc/inc-vendor.mk)
 
@@ -66,14 +66,24 @@ PRODUCT_COPY_FILES += \
 
 # Touchscreen
 PRODUCT_COPY_FILES += \
-    device/htc/inc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc
+    device/htc/inc/prebuilt/usr/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc
+
+# Keylayouts
+PRODUCT_COPY_FILES += \
+    device/htc/inc/prebuilt/usr/keylayout/incrediblec-keypad.kl:system/usr/keylayout/incrediblec-keypad.kl \
+    device/htc/inc/prebuilt/usr/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl
+
+# Keymap
+PRODUCT_COPY_FILES += \
+    device/htc/inc/prebuilt/usr/keychars/incrediblec-keypad.kcm.bin:system/usr/keychars/incrediblec-keypad.kcm.bin
 
 # media config xml file
 PRODUCT_COPY_FILES += \
-    device/htc/inc/media_profiles.xml:system/etc/media_profiles.xml
+    device/htc/inc/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml
 
-# Get the long list of APNs
-PRODUCT_COPY_FILES += device/sample/etc/apns-conf_verizon.xml:system/etc/apns-conf.xml
+# APN list
+PRODUCT_COPY_FILES += \
+    device/htc/inc/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml
 
 # Firmware
 PRODUCT_COPY_FILES += \
@@ -82,20 +92,10 @@ PRODUCT_COPY_FILES += \
     device/htc/inc/firmware/fw_bcm4329_apsta.bin:system/etc/firmware/fw_bcm4329_apsta.bin
 
 PRODUCT_COPY_FILES += \
-    device/htc/inc/vold.fstab:system/etc/vold.fstab \
-    device/htc/inc/gps.conf:system/etc/gps.conf \
-    device/htc/inc/apns-conf.xml:system/etc/apns-conf.xml
+    device/htc/inc/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
 PRODUCT_COPY_FILES += \
-    device/htc/inc/modules/bcm4329.ko:system/lib/modules/auth_rpcgss.ko \
-    device/htc/inc/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
-    device/htc/inc/modules/bcm4329.ko:system/lib/modules/cifs.ko \
-    device/htc/inc/modules/bcm4329.ko:system/lib/modules/ifb.ko \
-    device/htc/inc/modules/bcm4329.ko:system/lib/modules/lockd.ko \
-    device/htc/inc/modules/bcm4329.ko:system/lib/modules/nfs.ko \
-    device/htc/inc/modules/bcm4329.ko:system/lib/modules/rpcsec_gss_krb5.ko \
-    device/htc/inc/modules/bcm4329.ko:system/lib/modules/sunrpc.ko \
-    device/htc/inc/modules/bcm4329.ko:system/lib/modules/tun.ko
+    device/htc/inc/modules/bcm4329.ko:system/lib/modules/bcm4329.ko
 
 PRODUCT_PACKAGES += \
     librs_jni \
@@ -118,13 +118,12 @@ ADDITIONAL_BUILD_PROPERTIES += \
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
-# Incredible uses high-density artwork where available
-PRODUCT_LOCALES += hdpi
+PRODUCT_LOCALES += en
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/htc/inc/kernel
+    LOCAL_KERNEL := device/htc/inc/prebuilt/root/kernel
 else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+    LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
 PRODUCT_COPY_FILES += \
@@ -140,3 +139,4 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 PRODUCT_NAME := full_inc
 PRODUCT_DEVICE := inc
+PRODUCT_MODEL := Full Android on Inc
