@@ -68,6 +68,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/usr/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc
 
+# Optical trackball
+PRODUCT_COPY_FILES += \
+    device/htc/inc/prebuilt/usr/idc/curcial-oj.idc:system/usr/idc/curcial-oj.idc
+
 # Keylayouts
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/usr/keylayout/incrediblec-keypad.kl:system/usr/keylayout/incrediblec-keypad.kl \
@@ -87,15 +91,15 @@ PRODUCT_COPY_FILES += \
 
 # Firmware
 PRODUCT_COPY_FILES += \
-    device/htc/inc/firmware/bcm4329.hcd:system/etc/firmware/bcm4329.hcd \
-    device/htc/inc/firmware/fw_bcm4329.bin:system/etc/firmware/fw_bcm4329.bin \
-    device/htc/inc/firmware/fw_bcm4329_apsta.bin:system/etc/firmware/fw_bcm4329_apsta.bin
+    device/htc/inc/prebuilt/etc/firmware/bcm4329.hcd:system/etc/firmware/bcm4329.hcd \
+    device/htc/inc/prebuilt/etc/firmware/fw_bcm4329.bin:system/etc/firmware/fw_bcm4329.bin \
+    device/htc/inc/prebuilt/etc/firmware/fw_bcm4329_apsta.bin:system/etc/firmware/fw_bcm4329_apsta.bin
 
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
 PRODUCT_COPY_FILES += \
-    device/htc/inc/modules/bcm4329.ko:system/lib/modules/bcm4329.ko
+    device/htc/inc/prebuilt/lib/modules/bcm4329.ko:system/lib/modules/bcm4329.ko
 
 PRODUCT_PACKAGES += \
     librs_jni \
@@ -120,7 +124,7 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_LOCALES += en
 
-# Passion uses high-density artwork where available
+# Inc uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
