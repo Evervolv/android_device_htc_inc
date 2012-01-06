@@ -39,6 +39,9 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_BOOTLOADER_BOARD_NAME := inc
 
+# Legacy support flags
+BOARD_USE_LEGACY_TRACKPAD := true
+
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER      := WEXT
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
