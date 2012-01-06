@@ -98,9 +98,17 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
+# Camera libs (temporary usage)
+PRODUCT_COPY_FILES += \
+    device/htc/inc/prebuilt/lib/libcamera.so:obj/lib/libcamera.so \
+    device/htc/inc/prebuilt/lib/libcamera.so:system/lib/libcamera.so \
+    device/htc/inc/prebuilt/lib/hw/camera.qsd8k.so:system/lib/hw/camera.qsd8k.so
+
+# Kernel modules
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/lib/modules/bcm4329.ko:system/lib/modules/bcm4329.ko
 
+# HW drivers and libs
 PRODUCT_PACKAGES += \
     librs_jni \
     sensors.inc \
