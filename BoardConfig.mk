@@ -83,6 +83,8 @@ BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QCOM_LIBS := true
 BOARD_USES_LEGACY_QCOM := true
 
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
+
 #BOARD_USE_FROYO_LIBCAMERA := true
 
 # cat /proc/mtd
