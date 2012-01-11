@@ -1,3 +1,5 @@
+import init.inc.usb.rc
+
 on fs
 # eMMC related 
     export PHONE_STORAGE /mnt/emmc

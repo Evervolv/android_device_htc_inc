@@ -24,6 +24,7 @@ $(call inherit-product, device/common/gps/gps_us.mk)
 
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/root/init.inc.rc:root/init.inc.rc \
+    device/htc/inc/prebuilt/root/init.inc.usb.rc:root/init.inc.usb.rc \
     device/htc/inc/prebuilt/root/ueventd.inc.rc:root/ueventd.inc.rc
 
 $(call inherit-product-if-exists, vendor/htc/inc/inc-vendor.mk)
@@ -123,9 +124,13 @@ PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 #    copybit.qsd8k \
 
-#Disable HWAccel for now
+# Disable HWAccel for now
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.config.disable_hw_accel=true
+
+# USB
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    persist.sys.usb.config=mass_storage
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
