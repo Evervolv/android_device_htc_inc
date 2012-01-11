@@ -16,7 +16,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=GRJ22 BUILD_FINGERPRINT=verizon_wwe/inc
 
 # Set up the product codename, build version & MOTD.
 PRODUCT_CODENAME := Dives
-PRODUCT_VERSION_DEVICE_SPECIFIC := p3
+PRODUCT_VERSION_DEVICE_SPECIFIC := p4
 
 PRODUCT_MOTD :="\n\n\n--------------------MESSAGE---------------------\nThank you for choosing Evervolv for your Droid Incredible\nPlease visit us at \#evervolv on irc.freenode.net\nFollow @preludedrew for the latest Evervolv updates\nGet the latest rom at evervolv.com\n------------------------------------------------\n"
 
