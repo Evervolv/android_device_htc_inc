@@ -104,7 +104,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 TARGET_PREBUILT_KERNEL := device/htc/inc/prebuilt/root/kernel
-TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/inc/recovery_kernel
 
 BOARD_HAS_DATADATA := true
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
