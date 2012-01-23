@@ -99,11 +99,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
-# Camera libs (temporary usage)
+# Prebuilt libcamera for HAL
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/lib/libcamera.so:obj/lib/libcamera.so \
-    device/htc/inc/prebuilt/lib/libcamera.so:system/lib/libcamera.so \
-    device/htc/inc/prebuilt/lib/hw/camera.qsd8k.so:system/lib/hw/camera.qsd8k.so
+    device/htc/inc/prebuilt/lib/libcamera.so:system/lib/libcamera.so
 
 # Kernel modules
 PRODUCT_COPY_FILES += \
@@ -115,13 +114,14 @@ PRODUCT_PACKAGES += \
     sensors.inc \
     lights.inc \
     gps.inc \
-    libOmxCore \
-    libOmxVidEnc \
+    camera.qsd8k \
     audio.a2dp.default \
     audio.primary.qsd8k \
     audio_policy.qsd8k \
     gralloc.qsd8k \
     com.android.future.usb.accessory
+#    libOmxCore \
+#    libOmxVidEnc \
 #    copybit.qsd8k \
 
 # Disable HWAccel for now
