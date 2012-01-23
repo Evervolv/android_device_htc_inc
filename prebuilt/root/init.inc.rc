@@ -1,5 +1,11 @@
 import init.inc.usb.rc
 
+on early-init
+    export EXTERNAL_STORAGE /mnt/sdcard
+    mkdir /mnt/sdcard 0000 system system
+    # for backwards compatibility
+    symlink /mnt/sdcard /sdcard
+
 on fs
 # eMMC related 
     export PHONE_STORAGE /mnt/emmc
