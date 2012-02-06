@@ -130,7 +130,7 @@ ADDITIONAL_BUILD_PROPERTIES += \
 
 # USB
 ADDITIONAL_DEFAULT_PROPERTIES += \
-    persist.sys.usb.config=mass_storage
+    persist.sys.usb.config=mass_storage,adb
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
