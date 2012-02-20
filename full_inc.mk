@@ -48,9 +48,22 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.url.safetylegal=http://www.htc.com/staticfiles/Support/legal/?model=A855 \
 	ro.setupwizard.enable_bypass=1 \
 	dalvik.vm.lockprof.threshold=500 \
-	dalvik.vm.dexopt-flags=m=y \
 	ro.media.dec.jpeg.memcap=20000000 \
 	ro.media.enc.jpeg.quality=95,85,70
+
+# Dalvik properties - read from AndroidRuntime
+# dexop-flags:
+# "v="  verification 'n': none, 'r': remote, 'a': all
+# "o="  optimization 'n': none, 'v': verified, 'a': all, 'f': full
+# "m=y" register map
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dexopt-flags=v=n,o=v,m=y \
+    dalvik.vm.checkjni=false \
+    dalvik.vm.heapstartsize=5m \
+    dalvik.vm.heapgrowthlimit=48m \
+    dalvik.vm.heapsize=128m
+# we have enough storage space to hold precise GC data
+PRODUCT_TAGS += dalvik.gc.type-precise
 
 DEVICE_PACKAGE_OVERLAYS += device/htc/inc/overlay
 
@@ -106,34 +119,64 @@ PRODUCT_COPY_FILES += \
 
 # Kernel modules
 PRODUCT_COPY_FILES += \
-    device/htc/inc/prebuilt/lib/modules/bcm4329.ko:system/lib/modules/bcm4329.ko
+    device/htc/inc/prebuilt/lib/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
+    device/htc/inc/prebuilt/lib/modules/ifb.ko:system/lib/modules/ifb.ko
 
-# HW drivers and libs
-PRODUCT_PACKAGES += \
-    librs_jni \
-    sensors.inc \
-    lights.inc \
+#
+# Packages needed for Inc
+#
+# Sensors
+PRODUCT_PACKAGES := \
+    com.android.future.usb.accessory \
     gps.inc \
-    camera.qsd8k \
+    lights.inc \
+    sensors.inc \
+    librs_jni \
+    camera.qsd8k
+# Audio
+PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.primary.qsd8k \
-    audio_policy.qsd8k \
+    audio_policy.qsd8k
+# GPU
+PRODUCT_PACKAGES += \
+    copybit.qsd8k \
     gralloc.qsd8k \
-    com.android.future.usb.accessory
-#    libOmxCore \
-#    libOmxVidEnc \
-#    copybit.qsd8k \
+    hwcomposer.default \
+    hwcomposer.qsd8k \
+    libgenlock \
+    libmemalloc \
+    libtilerenderer \
+    libQcomUI
+# OMX
+PRODUCT_PACKAGES += \
+    libOmxCore \
+    libOmxVidEnc \
+    libOmxVdec \
+    libstagefrighthw
 
-# Disable HWAccel for now
-ADDITIONAL_BUILD_PROPERTIES += \
-    ro.config.disable_hw_accel=true
+# Enable GPU composition (0: cpu, 1: gpu)
+# Note: must be 1 for composition.type to work
+PRODUCT_PROPERTY_OVERRIDES += debug.sf.hw=1
+
+# Enable copybit composition
+PRODUCT_PROPERTY_OVERRIDES += debug.composition.type=mdp
+
+# Force 2 buffers since gralloc defaults to 3 (we only have 2)
+PRODUCT_PROPERTY_OVERRIDES += debug.gr.numframebuffers=2
+
+# HardwareRenderer properties
+# dirty regions: "false" disables partial invalidates (override if enabletr=true)
+PRODUCT_PROPERTY_OVERRIDES += \
+    hwui.render_dirty_regions=false \
+    hwui.disable_vsync=true \
+    hwui.print_config=choice \
+    debug.enabletr=false
 
 # USB
 ADDITIONAL_DEFAULT_PROPERTIES += \
-    persist.sys.usb.config=mass_storage
-
-# we have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
+    persist.sys.usb.config=mass_storage \
+    persist.service.adb.enable=1
 
 PRODUCT_LOCALES += en
 

@@ -38,6 +38,7 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_BOOTLOADER_BOARD_NAME := inc
+TARGET_SPECIFIC_HEADER_PATH := device/htc/inc/include
 
 # Legacy support flags
 BOARD_USE_LEGACY_TRACKPAD := true
@@ -72,16 +73,45 @@ BOARD_VENDOR_USE_AKMD := akm8973
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := inc
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 
+# Hardware rendering
 BOARD_EGL_CFG := device/htc/inc/prebuilt/lib/egl/egl.cfg
-BOARD_USES_OVERLAY := true
-#USE_OPENGL_RENDERER := true
-#BOARD_USES_HGL := true
+USE_OPENGL_RENDERER := true
+TARGET_USES_GENLOCK := true
+# Unnecessary with new egl libs
+#COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE
+# Our copybit supports YV12 conversion, so not needed
+#COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_PIXEL_FORMAT_YV12
+# We only have 2 buffers so still need to hack it
+COMMON_GLOBAL_CFLAGS += -DMISSING_GRALLOC_BUFFERS
+# Unneeded but use as safety measure to ensure that everything is included
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+# Force refresh rate since fps calc reports 0
+COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60
+# qsd8k: no support for overlay, bypass, or c2d
+TARGET_USE_OVERLAY := false
+TARGET_HAVE_BYPASS := false
+TARGET_USES_C2D_COMPOSITION := false
 
-COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_EGL_PIXEL_FORMAT_YV12 -DMISSING_GRALLOC_BUFFERS
+# Try to use ASHMEM if possible (when non-MDP composition is used)
+# If enabled, set debug.sf.hw=1 in system.prop
+# Disabling for now since pmem and mdp seem to work fine
+#TARGET_GRALLOC_USES_ASHMEM := true
 
+# Flags present in CAF but not Evervolv yet(unsure of purpose)
+#HAVE_ADRENO200_SOURCE := true
+#HAVE_ADRENO200_SC_SOURCE := true
+#HAVE_ADRENO200_FIRMWARE := true
+#BOARD_USES_QCNE := true
+# Unsure if these flags do anything but others use them
+#BOARD_USE_QCOM_PMEM := true
+#BOARD_USES_ADRENO_200 := true
+#TARGET_HARDWARE_3D := false
+# Debugging egl
+COMMON_GLOBAL_CFLAGS += -DEGL_TRACE
+
+TARGET_FORCE_CPU_UPLOAD := true
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QCOM_LIBS := true
-BOARD_USES_LEGACY_QCOM := true
 
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
 
