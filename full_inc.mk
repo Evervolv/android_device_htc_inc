@@ -95,6 +95,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/usr/keychars/incrediblec-keypad.kcm.bin:system/usr/keychars/incrediblec-keypad.kcm.bin
 
+# sysctl parameters
+PRODUCT_COPY_FILES += \
+    device/htc/inc/prebuilt/etc/sysctl.conf:system/etc/sysctl.conf
+
 # media config xml file
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml
