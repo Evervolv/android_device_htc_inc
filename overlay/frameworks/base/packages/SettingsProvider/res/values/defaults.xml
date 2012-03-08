@@ -20,6 +20,6 @@
     <bool name="def_screen_brightness_automatic_mode">true</bool>
     <integer name="def_lockscreen_sounds_enabled">0</integer>
     <!-- Default for Settings.System.POINTER_SPEED -->
-    <integer name="def_pointer_speed">100</integer>
+    <integer name="def_pointer_speed">80</integer>
     <bool name="def_install_non_market_apps">true</bool>
 </resources>
