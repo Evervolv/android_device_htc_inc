@@ -30,8 +30,6 @@ PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/root/init.inc.usb.rc:root/init.inc.usb.rc \
     device/htc/inc/prebuilt/root/ueventd.inc.rc:root/ueventd.inc.rc
 
-$(call inherit-product-if-exists, vendor/htc/inc/inc-vendor.mk)
-
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.error.receiver.system.apps=com.google.android.feedback \
 	ro.setupwizard.enterprise_mode=1 \

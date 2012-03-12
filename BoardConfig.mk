@@ -43,6 +43,8 @@ TARGET_SPECIFIC_HEADER_PATH := device/htc/inc/include
 # Legacy support flags
 BOARD_USE_LEGACY_TRACKPAD := true
 
+BOARD_HAS_SCREEN_OFF_FLICKER := true
+
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER      := WEXT
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
