@@ -8,7 +8,7 @@ on early-init
 
 on fs
 # eMMC related 
-    export PHONE_STORAGE /mnt/emmc
+    export SECONDARY_STORAGE /mnt/emmc
 
     # Create mountpoints
     mount rootfs rootfs / remount
