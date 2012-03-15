@@ -92,6 +92,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/etc/sysctl.conf:system/etc/sysctl.conf
 
+# non-rotational init.d script
+PRODUCT_COPY_FILES += \
+    device/htc/inc/prebuilt/etc/init.d/02nonrot:system/etc/init.d/02nonrot
+
 # media config xml file
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml
@@ -123,7 +127,7 @@ PRODUCT_COPY_FILES += \
 # Packages needed for Inc
 #
 # Sensors
-PRODUCT_PACKAGES := \
+PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
     gps.inc \
     lights.inc \
@@ -139,7 +143,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     copybit.qsd8k \
     gralloc.qsd8k \
-    hwcomposer.default \
     hwcomposer.qsd8k \
     libgenlock \
     libmemalloc \

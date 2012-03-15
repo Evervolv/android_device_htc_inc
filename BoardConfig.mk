@@ -37,6 +37,8 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
+ARCH_ARM_HAVE_VFP := true
+
 TARGET_BOOTLOADER_BOARD_NAME := inc
 TARGET_SPECIFIC_HEADER_PATH := device/htc/inc/include
 
@@ -57,6 +59,8 @@ WIFI_DRIVER_MODULE_ARG           := "iface_name=wlan firmware_path=/system/vendo
 WIFI_DRIVER_MODULE_NAME          := "bcm4329"
 
 BOARD_USES_GENERIC_AUDIO := false
+# prevent breakage from QCOM_HARDWARE in system/core/include/system/audio.h
+COMMON_GLOBAL_CFLAGS += -DLEGACY_AUDIO_COMPAT
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1
 BOARD_KERNEL_BASE := 0x20000000
@@ -94,10 +98,8 @@ TARGET_USE_OVERLAY := false
 TARGET_HAVE_BYPASS := false
 TARGET_USES_C2D_COMPOSITION := false
 
-# Try to use ASHMEM if possible (when non-MDP composition is used)
-# If enabled, set debug.sf.hw=1 in system.prop
-# Disabling for now since pmem and mdp seem to work fine
-#TARGET_GRALLOC_USES_ASHMEM := true
+# Allow fallback to ashmem
+TARGET_GRALLOC_USES_ASHMEM := true
 
 # Flags present in CAF but not Evervolv yet(unsure of purpose)
 #HAVE_ADRENO200_SOURCE := true
