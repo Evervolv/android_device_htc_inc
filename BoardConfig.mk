@@ -35,7 +35,11 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
+
 TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_ARCH_VARIANT_CPU := cortex-a8
+TARGET_ARCH_VARIANT_FPU := neon
+
 ARCH_ARM_HAVE_TLS_REGISTER := true
 ARCH_ARM_HAVE_VFP := true
 
@@ -101,17 +105,11 @@ TARGET_USES_C2D_COMPOSITION := false
 # Allow fallback to ashmem
 TARGET_GRALLOC_USES_ASHMEM := true
 
-# Flags present in CAF but not Evervolv yet(unsure of purpose)
-#HAVE_ADRENO200_SOURCE := true
-#HAVE_ADRENO200_SC_SOURCE := true
-#HAVE_ADRENO200_FIRMWARE := true
-#BOARD_USES_QCNE := true
-# Unsure if these flags do anything but others use them
-#BOARD_USE_QCOM_PMEM := true
-#BOARD_USES_ADRENO_200 := true
-#TARGET_HARDWARE_3D := false
 # Debugging egl
 COMMON_GLOBAL_CFLAGS += -DEGL_TRACE
+
+#BOARD_USE_QCOM_PMEM := true
+#TARGET_HARDWARE_3D := false
 
 TARGET_FORCE_CPU_UPLOAD := true
 BOARD_USES_QCOM_HARDWARE := true

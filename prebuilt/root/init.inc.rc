@@ -154,6 +154,8 @@ on boot
     # KSM defaults
     write /sys/kernel/mm/ksm/sleep_millisecs 3000
     write /sys/kernel/mm/ksm/pages_to_scan 256
+    # Enable KSM
+    write /sys/kernel/mm/ksm/run 1
 
 service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
     -Dwext -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf
