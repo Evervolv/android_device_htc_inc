@@ -119,9 +119,11 @@ PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/lib/libcamera.so:system/lib/libcamera.so
 
 # Kernel modules
+ifneq ($(BUILD_KERNEL),true)
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/lib/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
     device/htc/inc/prebuilt/lib/modules/ifb.ko:system/lib/modules/ifb.ko
+endif
 
 #
 # Packages needed for Inc
@@ -181,15 +183,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 
 # Set dirty_ratio for UMS
 PRODUCT_PROPERTY_OVERRIDES += ro.vold.umsdirtyratio=20
-
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-    LOCAL_KERNEL := device/htc/inc/prebuilt/root/kernel
-else
-    LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
 
 $(call inherit-product-if-exists, vendor/htc/inc/inc-vendor.mk)
 

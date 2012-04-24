@@ -131,7 +131,10 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x09500000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
-TARGET_PREBUILT_KERNEL := device/htc/inc/prebuilt/root/kernel
+
+TARGET_KERNEL_CONFIG    := evervolv_incrediblec_defconfig
+TARGET_KERNEL_SOURCE    := kernel/htc/qsd8k
+TARGET_PREBUILT_KERNEL  := device/htc/inc/prebuilt/root/kernel
 
 BOARD_HAS_DATADATA := true
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
