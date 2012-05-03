@@ -136,6 +136,7 @@ PRODUCT_PACKAGES += \
     camera.qsd8k
 # Audio
 PRODUCT_PACKAGES += \
+    libaudioutils \
     audio.a2dp.default \
     audio.primary.qsd8k \
     audio_policy.qsd8k
