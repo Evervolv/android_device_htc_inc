@@ -14,13 +14,8 @@
 # limitations under the License.
 #
 
-# Overlay / Locale
+# Overlay
 DEVICE_PACKAGE_OVERLAYS := device/htc/inc/overlay
-PRODUCT_LOCALES := en
-
-# Inc uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us.mk)
@@ -47,29 +42,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.media.dec.jpeg.memcap=20000000 \
 	ro.media.enc.jpeg.quality=95,85,70
 
-# Dalvik properties
-# dexop-flags: "v=" n|r|a, "o=" n|v|a|f, "m=y" register map
-# v=verify o=optimize: n=none r=remote a=all f=full v=verified
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dexopt-flags=m=y \
-    dalvik.vm.checkjni=false
-
-# Default heap settings for 512mb device
-include frameworks/base/build/phone-hdpi-512-dalvik-heap.mk
-
-# we have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
-
 PRODUCT_COPY_FILES += \
-    frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-    frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
-    frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
-    frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
+    frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 
 # Touchscreen
 PRODUCT_COPY_FILES += \
@@ -119,7 +93,7 @@ PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/lib/libcamera.so:system/lib/libcamera.so
 
 # Kernel modules
-ifneq ($(BUILD_KERNEL),true)
+ifeq (,$(BUILD_KERNEL))
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/lib/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
     device/htc/inc/prebuilt/lib/modules/ifb.ko:system/lib/modules/ifb.ko
@@ -130,51 +104,10 @@ endif
 #
 # Sensors
 PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory \
     gps.inc \
     lights.inc \
     sensors.inc \
-    librs_jni \
     camera.qsd8k
-# Audio
-PRODUCT_PACKAGES += \
-    libaudioutils \
-    audio.a2dp.default \
-    audio.primary.qsd8k \
-    audio_policy.qsd8k
-# GPU
-PRODUCT_PACKAGES += \
-    copybit.qsd8k \
-    gralloc.qsd8k \
-    hwcomposer.qsd8k \
-    libgenlock \
-    libmemalloc \
-    libtilerenderer \
-    libQcomUI
-# OMX
-PRODUCT_PACKAGES += \
-    libOmxCore \
-    libOmxVidEnc \
-    libOmxVdec \
-    libstagefrighthw
-
-# Enable GPU composition (0: cpu, 1: gpu)
-# Note: must be 1 for composition.type to work
-PRODUCT_PROPERTY_OVERRIDES += debug.sf.hw=1
-
-# Enable copybit composition
-PRODUCT_PROPERTY_OVERRIDES += debug.composition.type=mdp
-
-# Force 2 buffers since gralloc defaults to 3 (we only have 2)
-PRODUCT_PROPERTY_OVERRIDES += debug.gr.numframebuffers=2
-
-# HardwareRenderer properties
-# dirty regions: "false" disables partial invalidates (override if enabletr=true)
-PRODUCT_PROPERTY_OVERRIDES += \
-    hwui.render_dirty_regions=false \
-    hwui.disable_vsync=true \
-    hwui.print_config=choice \
-    debug.enabletr=false
 
 # USB
 ADDITIONAL_DEFAULT_PROPERTIES += \
@@ -184,10 +117,10 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 # Set dirty_ratio for UMS
 PRODUCT_PROPERTY_OVERRIDES += ro.vold.umsdirtyratio=20
 
-$(call inherit-product-if-exists, vendor/htc/inc/inc-vendor.mk)
+# Common qsd8k stuff
+$(call inherit-product, device/htc/qsd8k-common/qsd8k.mk)
 
-# stuff common to all HTC phones
-$(call inherit-product, device/htc/common/common.mk)
+$(call inherit-product-if-exists, vendor/htc/inc/inc-vendor.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
