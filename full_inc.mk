@@ -43,7 +43,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.media.enc.jpeg.quality=95,85,70
 
 PRODUCT_COPY_FILES += \
-    frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
+    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 
 # Touchscreen
 PRODUCT_COPY_FILES += \
