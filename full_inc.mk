@@ -104,9 +104,9 @@ endif
 #
 # Sensors
 PRODUCT_PACKAGES += \
+    gps.inc \
     lights.inc \
     sensors.inc
-#    gps.inc \
 #    camera.qsd8k
 
 # USB
