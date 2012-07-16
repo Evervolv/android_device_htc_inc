@@ -94,7 +94,6 @@ PRODUCT_COPY_FILES += \
 # Kernel modules
 ifeq (,$(BUILD_KERNEL))
 PRODUCT_COPY_FILES += \
-    device/htc/inc/prebuilt/lib/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
     device/htc/inc/prebuilt/lib/modules/ifb.ko:system/lib/modules/ifb.ko
 endif
 
