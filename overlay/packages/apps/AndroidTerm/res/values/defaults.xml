@@ -2,7 +2,6 @@
 <resources>
    <string name="pref_statusbar_default">0</string>
    <string name="pref_color_default">1</string>
-   <string name="pref_shell_default">/system/bin/sh -c su</string>
    <string name="pref_initialcommand_default">clear</string>
    <string name="pref_termtype_default">linux</string>
 </resources>
