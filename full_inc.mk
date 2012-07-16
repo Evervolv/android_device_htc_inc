@@ -80,10 +80,9 @@ PRODUCT_COPY_FILES += \
 
 # Firmware
 PRODUCT_COPY_FILES += \
-    device/htc/inc/prebuilt/etc/firmware/bcm4329.hcd:system/etc/firmware/bcm4329.hcd \
-    device/htc/inc/prebuilt/etc/firmware/fw_bcm4329.bin:system/etc/firmware/fw_bcm4329.bin \
-    device/htc/inc/prebuilt/etc/firmware/fw_bcm4329_apsta.bin:system/etc/firmware/fw_bcm4329_apsta.bin
+    device/htc/inc/prebuilt/etc/firmware/bcm4329.hcd:system/etc/firmware/bcm4329.hcd
 
+#Vold mounts
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
