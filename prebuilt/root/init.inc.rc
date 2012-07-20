@@ -1,19 +1,22 @@
 import init.inc.usb.rc
 
 on early-init
-    export EXTERNAL_STORAGE /mnt/sdcard
-    mkdir /mnt/sdcard 0000 system system
+    export EXTERNAL_STORAGE /storage/sdcard0
+    mkdir /storage 0050 system sdcard_r
+    mkdir /storage/sdcard0 0000 system system
     # for backwards compatibility
-    symlink /mnt/sdcard /sdcard
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard0 /mnt/sdcard
 
 on fs
 # eMMC related 
-    export SECONDARY_STORAGE /mnt/emmc
+    export SECONDARY_STORAGE /storage/sdcard1
 
     # Create mountpoints
     mount rootfs rootfs / remount
-    mkdir /mnt/emmc 0000 system system
-    symlink /mnt/emmc /emmc
+    mkdir /storage/sdcard1 0000 system system
+    symlink /storage/sdcard1 /emmc
+    symlink /storage/sdcard1 /mnt/emmc
 
     mount rootfs rootfs / ro remount
 
