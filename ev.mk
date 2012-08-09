@@ -16,12 +16,9 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_FINGERPRINT=verizon_wwe/inc/inc/inc:2.3.4/
 
 # Set up the product codename, build version & MOTD.
 PRODUCT_CODENAME := Dives
-PRODUCT_VERSION_DEVICE_SPECIFIC := p5
+PRODUCT_VERSION_DEVICE_SPECIFIC := p6
 
 PRODUCT_MOTD :="\n\n\n--------------------MESSAGE---------------------\nThank you for choosing Evervolv\nVisit us at \#evervolv on irc.freenode.net\nFollow @preludedrew for the latest updates\n------------------------------------------------\n"
-
-PRODUCT_PACKAGES += \
-    Camera
 
 # Hot reboot
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/hot_reboot
