@@ -25,6 +25,7 @@
 <!ATTLIST EncoderProfile quality (480p|qcif) #REQUIRED>
 <!ATTLIST EncoderProfile fileFormat (mp4|3gp) #REQUIRED>
 <!ATTLIST EncoderProfile duration (30|60) #REQUIRED>
+<!ATTLIST EncoderProfile cameraId (0|1) #REQUIRED>
 <!ELEMENT Video EMPTY>
 <!ATTLIST Video codec (h264|h263|m4v) #REQUIRED>
 <!ATTLIST Video bitRate CDATA #REQUIRED>
@@ -41,7 +42,6 @@
 <!ELEMENT ImageDecoding EMPTY>
 <!ATTLIST ImageDecoding memCap CDATA #REQUIRED>
 <!ELEMENT Camera EMPTY>
-<!ATTLIST Camera previewFrameRate CDATA #REQUIRED>
 <!ELEMENT EncoderOutputFileFormat EMPTY>
 <!ATTLIST EncoderOutputFileFormat name (mp4|3gp) #REQUIRED>
 <!ELEMENT VideoEncoderCap EMPTY>
@@ -77,21 +77,8 @@
 -->
 <MediaSettings>
     <!-- Each camcorder profile defines a set of predefined configuration parameters -->
-    <CamcorderProfiles>
-	<!-- Added but disabled for now until stagefright is fixed
-        <EncoderProfile quality="720p" fileFormat="mp4" duration="60">
-            <Video codec="m4v"
-                   bitRate="6000000"
-                   width="1280"
-                   height="720"
-                   frameRate="30" />
+    <CamcorderProfiles cameraId="0" startOffsetMs="1500">
 
-            <Audio codec="aac"
-                   bitRate="96000"
-                   sampleRate="16000"
-                   channels="1" />
-        </EncoderProfile>
-	-->
         <EncoderProfile quality="480p" fileFormat="mp4" duration="60">
             <Video codec="h264"
                    bitRate="3000000"
@@ -151,8 +138,6 @@
         <ImageEncoding quality="70" />
 
         <ImageDecoding memCap="20000000" />
-
-        <Camera previewFrameRate="0" />
 
     </CamcorderProfiles>
 
