@@ -75,7 +75,7 @@
 
     <!-- Flag indicating whether we should enable automatic brightness for
          the button and keyboard backlights. -->
-    <bool name="config_autoBrightnessButtonKeyboard">false</bool>
+    <!--<bool name="config_autoBrightnessButtonKeyboard">false</bool>-->
 
     <!-- Array of output values for button backlight corresponding to the LUX values
          in the config_autoBrightnessLevels array.  This array should have size one greater
@@ -114,11 +114,12 @@
     
     <integer name="config_deskDockKeepsScreenOn">0</integer>
 
-    <!-- Package name providing network location support. -->
-    <string name="config_networkLocationProviderPackageName" translatable="false">com.google.android.location</string>
-
-    <!-- Package name providing geocoder API support. -->
-    <string name="config_geocodeProviderPackageName" translatable="false">com.google.android.location</string>
+    <string-array name="config_locationProviderPackageNames" translatable="false">
+        <!-- The standard AOSP fused location provider -->
+        <item>com.android.location.fused</item>
+        <!-- The Google Network Location Services location provider -->
+        <item>com.google.android.location</item>
+    </string-array>
 
 
     <!-- An Array of "[Connection name],[ConnectivityManager.TYPE_xxxx],
