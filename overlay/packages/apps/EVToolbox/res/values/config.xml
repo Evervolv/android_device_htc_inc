@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="config_defaultDpi">240</string>
+    <string name="config_recommendedTabletDpi">130</string>
+
     <!-- Whether or not to display the trackball settings -->
     <bool name="has_trackball">true</bool>
 </resources>
