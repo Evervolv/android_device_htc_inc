@@ -46,8 +46,6 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 1240
 
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun%d/file
 
-#BOARD_USE_FROYO_LIBCAMERA := true
-
 # cat /proc/mtd
 # dev:    size   erasesize  name
 # mtd0: 000a0000 00020000 "misc"
@@ -64,7 +62,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x09500000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 TARGET_KERNEL_CONFIG    := evervolv_incrediblec_defconfig
-TARGET_PREBUILT_KERNEL  := device/htc/inc/prebuilt/root/kernel
+TARGET_RECOVERY_FSTAB   := device/htc/inc/prebuilt/root/fstab.inc
 
 BOARD_HAS_DATADATA := true
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1

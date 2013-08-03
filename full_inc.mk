@@ -82,20 +82,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/etc/firmware/bcm4329.hcd:system/etc/firmware/bcm4329.hcd
 
-#Vold mounts
-PRODUCT_COPY_FILES += \
-    device/htc/inc/prebuilt/etc/vold.fstab:system/etc/vold.fstab
-
 # Prebuilt libcamera for HAL
 PRODUCT_COPY_FILES += \
     device/htc/inc/prebuilt/lib/libcamera.so:obj/lib/libcamera.so \
     device/htc/inc/prebuilt/lib/libcamera.so:system/lib/libcamera.so
-
-# Kernel modules
-ifeq (,$(BUILD_KERNEL))
-PRODUCT_COPY_FILES += \
-    device/htc/inc/prebuilt/lib/modules/ifb.ko:system/lib/modules/ifb.ko
-endif
 
 #
 # Packages needed for Inc
@@ -108,8 +98,7 @@ PRODUCT_PACKAGES += \
 
 # USB
 ADDITIONAL_DEFAULT_PROPERTIES += \
-    persist.sys.usb.config=mass_storage \
-    persist.service.adb.enable=1
+    persist.sys.usb.config=mass_storage
 
 # Set dirty_ratio for UMS
 PRODUCT_PROPERTY_OVERRIDES += ro.vold.umsdirtyratio=20
