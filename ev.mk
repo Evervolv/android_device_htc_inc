@@ -2,7 +2,7 @@
 $(call inherit-product, device/htc/inc/full_inc.mk)
 
 # Inherit some common evervolv stuff.
-$(call inherit-product, vendor/ev/config/common_full_phone.mk)
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common_small_phone.mk)
 
 #
 # Setup device specific product configuration.
@@ -22,6 +22,6 @@ PRODUCT_MOTD :="\n\n\n--------------------MESSAGE---------------------\nThank yo
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/hot_reboot
 
 # Copy compatible prebuilt files
-PRODUCT_COPY_FILES +=  \
-    vendor/ev/prebuilt/wvga/media/bootanimation.zip:system/media/bootanimation.zip
+#PRODUCT_COPY_FILES +=  \
+#    vendor/ev/prebuilt/wvga/media/bootanimation.zip:system/media/bootanimation.zip
 
