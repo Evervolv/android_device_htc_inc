@@ -15,6 +15,10 @@ on early-init
     export SECONDARY_STORAGE /storage/sdcard1
 
 on fs
+    # mount mtd partitions
+    # Mount /system rw first to give the filesystem a chance to save a checkpoint
+    mount yaffs2 mtd@system /system
+    mount yaffs2 mtd@system /system ro remount
     #
     # START from umount/re-mount data
     # 
@@ -72,7 +76,7 @@ on fs
     #
     # START umount/re-mount cache
     #
-    umount /cache
+
     mount ext4 /dev/block/mmcblk0p2 /cache wait nosuid nodev noatime nodiratime
     chown system cache /cache
     chmod 0771 /cache
