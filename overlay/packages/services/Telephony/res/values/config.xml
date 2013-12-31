@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 
-<!-- Crespo-specific phone app resources. -->
+<!-- Inc-specific phone app resources. -->
 <resources>
 
     <!-- Determine whether we should show the "listen for instructions" screen after
@@ -27,6 +27,6 @@
     <bool name="send_mic_mute_to_AudioManager">true</bool>
 
     <!-- Determines if device implements a noise suppression device for in call audio-->
-    <bool name="has_in_call_noise_suppression">true</bool>
+    <bool name="has_in_call_noise_suppression">false</bool>
 
 </resources>
