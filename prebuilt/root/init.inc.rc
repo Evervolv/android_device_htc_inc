@@ -143,7 +143,7 @@ on boot
 
     # flashlight
     chown system camera /sys/devices/platform/flashlight.0/leds/flashlight/brightness
-    chmod 0660          /sys/devices/platform/flashlight.0/leds/flashlight/brightness
+    chmod 0666          /sys/devices/platform/flashlight.0/leds/flashlight/brightness
 
     # Enable low memory killer to check file pages
     write /sys/module/lowmemorykiller/parameters/minfile 0,0,0,5120,5632,6144
